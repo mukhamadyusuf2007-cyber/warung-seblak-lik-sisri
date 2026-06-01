@@ -1,269 +1,152 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warung Seblak Lik Sisri</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warung Seblak Lik Sisri</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header>
+<header>
+    <nav class="navbar">
         <div class="logo">
-            <i class="fa-solid fa-pepper-hot"></i>
+            <i class="fa-solid fa-bowl-food"></i>
             Warung Seblak Lik Sisri
         </div>
 
-        <nav>
-            <ul>
-                <li><a href="#beranda">Beranda</a></li>
-                <li><a href="#makanan">Menu Makanan</a></li>
-                <li><a href="#minuman">Menu Minuman</a></li>
-                <li><a href="#tentang">Tentang Kami</a></li>
-                <li><a href="#kontak">Kontak</a></li>
-            </ul>
-        </nav>
+        <ul class="nav-links">
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#makanan">Menu Makanan</a></li>
+            <li><a href="#minuman">Menu Minuman</a></li>
+            <li><a href="#tentang">Tentang Kami</a></li>
+            <li><a href="#kontak">Kontak</a></li>
+        </ul>
 
-        <div class="cart-icon">
+        <div class="cart-icon" id="cartBtn">
             <i class="fa-solid fa-cart-shopping"></i>
-            <span id="cart-count">0</span>
+            <span id="cartCount">0</span>
         </div>
-    </header>
+    </nav>
+</header>
 
-    <!-- HERO -->
-    <section id="beranda" class="hero">
-        <div class="hero-content">
-            <h1>Selamat Datang di Warung Seblak Lik Sisri</h1>
-            <p>
-                Menyediakan aneka seblak, gorengan, mie ayam,
-                sempol, dan berbagai minuman segar dengan harga
-                terjangkau.
-            </p>
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>Selamat Datang di Warung Seblak Lik Sisri</h1>
+        <p>
+            Seblak pedas nikmat, gorengan hangat,
+            dan minuman segar siap menemani harimu.
+        </p>
+        <a href="#makanan" class="btn">Pesan Sekarang</a>
+    </div>
+</section>
 
-            <a href="#makanan" class="btn">
-                Pesan Sekarang
-            </a>
-        </div>
-    </section>
+<section class="search-section">
+  <input type="text" id="searchInput" placeholder="Cari menu..."/>
 
-    <!-- SEARCH & FILTER -->
-    <section class="tools">
-        <input type="text" id="searchInput"
-            placeholder="Cari menu...">
+  <button class="btn" onclick="searchMenu()">Cari</button>
 
-        <select id="filterMenu">
-            <option value="all">Semua Menu</option>
-            <option value="makanan">Makanan</option>
-            <option value="minuman">Minuman</option>
-        </select>
-    </section>
+  <div class="filter">
+    <button onclick="setFilter('all')">Semua</button>
+    <button onclick="setFilter('makanan')">Makanan</button>
+    <button onclick="setFilter('minuman')">Minuman</button>
+  </div>
+</section>
 
-    <!-- MENU MAKANAN -->
-    <section id="makanan">
-        <h2>Menu Makanan</h2>
+<section id="makanan" class="menu-section">
+    <h2 class="section-title">Menu Makanan</h2>
 
-        <div class="products">
+    <div class="products" id="foodContainer"></div>
+</section>
 
-            <div class="card makanan">
-                <img src="https://via.placeholder.com/300x200?text=Seblak+Original">
-                <h3>Seblak Original</h3>
-                <p>Seblak pedas gurih khas Lik Sisri.</p>
-                <span>Rp 12.000</span>
-                <button onclick="addToCart(12000)">
-                    Beli
-                </button>
-            </div>
+<section id="minuman" class="menu-section">
+    <h2 class="section-title">Menu Minuman</h2>
 
-            <div class="card makanan">
-                <img src="https://via.placeholder.com/300x200?text=Seblak+Ceker">
-                <h3>Seblak Ceker</h3>
-                <p>Seblak dengan ceker empuk dan pedas.</p>
-                <span>Rp 15.000</span>
-                <button onclick="addToCart(15000)">
-                    Beli
-                </button>
-            </div>
+    <div class="products" id="drinkContainer"></div>
+</section>
 
-            <div class="card makanan">
-                <img src="https://via.placeholder.com/300x200?text=Seblak+Komplit">
-                <h3>Seblak Komplit</h3>
-                <p>Isian lengkap dan nikmat.</p>
-                <span>Rp 20.000</span>
-                <button onclick="addToCart(20000)">
-                    Beli
-                </button>
-            </div>
+<section id="tentang" class="about">
+    <h2>Tentang Kami</h2>
 
-            <div class="card makanan">
-                <img src="https://via.placeholder.com/300x200?text=Gorengan">
-                <h3>Gorengan</h3>
-                <p>Aneka gorengan hangat.</p>
-                <span>Rp 2.000</span>
-                <button onclick="addToCart(2000)">
-                    Beli
-                </button>
-            </div>
+    <p>
+        Warung Seblak Lik Sisri menghadirkan berbagai pilihan
+        seblak, makanan ringan, dan minuman segar dengan cita rasa khas.
+        Kami berkomitmen memberikan pelayanan terbaik dan bahan berkualitas.
+    </p>
+</section>
 
-            <div class="card makanan">
-                <img src="https://via.placeholder.com/300x200?text=Mie+Ayam">
-                <h3>Mie Ayam</h3>
-                <p>Mie ayam gurih dan lezat.</p>
-                <span>Rp 15.000</span>
-                <button onclick="addToCart(15000)">
-                    Beli
-                </button>
-            </div>
+<section id="kontak" class="contact">
+    <h2>Kontak</h2>
 
-            <div class="card makanan">
-                <img src="https://via.placeholder.com/300x200?text=Sempol">
-                <h3>Sempol</h3>
-                <p>Sempol ayam favorit pelanggan.</p>
-                <span>Rp 10.000</span>
-                <button onclick="addToCart(10000)">
-                    Beli
-                </button>
-            </div>
+    <div class="contact-info">
+        <p><i class="fa-solid fa-location-dot"></i> Kebumen, Jawa Tengah</p>
+        <p><i class="fa-brands fa-whatsapp"></i> 082226362669</p>
+        <p><i class="fa-solid fa-envelope"></i> info@liksisri.com</p>
+    </div>
 
-        </div>
-    </section>
+    <form>
+        <input type="text" placeholder="Nama">
+        <input type="email" placeholder="Email">
+        <textarea placeholder="Pesan"></textarea>
+        <button type="submit">Kirim</button>
+    </form>
+</section>
 
-    <!-- MENU MINUMAN -->
-    <section id="minuman">
-        <h2>Menu Minuman</h2>
+<footer>
+    <p>© 202 Warung Seblak Lik Sisri</p>
 
-        <div class="products">
+    <div class="socials">
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-whatsapp"></i>
+    </div>
+</footer>
 
-            <div class="card minuman">
-                <img src="https://via.placeholder.com/300x200?text=Es+Teh">
-                <h3>Es Teh</h3>
-                <p>Segar dan manis.</p>
-                <span>Rp 5.000</span>
-                <button onclick="addToCart(5000)">Beli</button>
-            </div>
+<div class="cart-modal" id="cartModal">
+    <div class="cart-content">
 
-            <div class="card minuman">
-                <img src="https://via.placeholder.com/300x200?text=Es+Buah">
-                <h3>Es Buah</h3>
-                <p>Campuran buah segar.</p>
-                <span>Rp 10.000</span>
-                <button onclick="addToCart(10000)">Beli</button>
-            </div>
+        <span class="close" id="closeCart">&times;</span>
 
-            <div class="card minuman">
-                <img src="https://via.placeholder.com/300x200?text=Es+Teler">
-                <h3>Es Teler</h3>
-                <p>Es teler spesial.</p>
-                <span>Rp 12.000</span>
-                <button onclick="addToCart(12000)">Beli</button>
-            </div>
-
-            <div class="card minuman">
-                <img src="https://via.placeholder.com/300x200?text=Marimas">
-                <h3>Marimas</h3>
-                <p>Minuman segar aneka rasa.</p>
-                <span>Rp 4.000</span>
-                <button onclick="addToCart(4000)">Beli</button>
-            </div>
-
-            <div class="card minuman">
-                <img src="https://via.placeholder.com/300x200?text=Tea+Jus">
-                <h3>Tea Jus</h3>
-                <p>Minuman teh rasa buah.</p>
-                <span>Rp 5.000</span>
-                <button onclick="addToCart(5000)">Beli</button>
-            </div>
-
-            <div class="card minuman">
-                <img src="https://via.placeholder.com/300x200?text=Matcha">
-                <h3>Matcha</h3>
-                <p>Matcha creamy kekinian.</p>
-                <span>Rp 15.000</span>
-                <button onclick="addToCart(15000)">Beli</button>
-            </div>
-
-            <div class="card minuman">
-                <img src="https://via.placeholder.com/300x200?text=Kopi+Panas">
-                <h3>Kopi Panas</h3>
-                <p>Kopi hangat nikmat.</p>
-                <span>Rp 8.000</span>
-                <button onclick="addToCart(8000)">Beli</button>
-            </div>
-
-            <div class="card minuman">
-                <img src="https://via.placeholder.com/300x200?text=Kopi+Hangat">
-                <h3>Kopi Hangat</h3>
-                <p>Teman santai terbaik.</p>
-                <span>Rp 8.000</span>
-                <button onclick="addToCart(8000)">Beli</button>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- CART -->
-    <section class="cart">
         <h2>Keranjang Belanja</h2>
 
-        <p>Total Item :
-            <span id="total-items">0</span>
-        </p>
+        <div id="cartItems"></div>
 
-        <p>Total Harga :
-            Rp <span id="total-price">0</span>
-        </p>
-
-        <button class="checkout">
-            Checkout
-        </button>
-    </section>
-
-    <!-- TENTANG -->
-    <section id="tentang">
-        <h2>Tentang Kami</h2>
-
-        <p>
-            Warung Seblak Lik Sisri menyediakan makanan dan
-            minuman berkualitas dengan cita rasa khas,
-            menggunakan bahan pilihan serta harga yang
-            terjangkau untuk semua kalangan.
-        </p>
-    </section>
-
-    <!-- KONTAK -->
-    <section id="kontak">
-        <h2>Kontak Kami</h2>
-
-        <p><i class="fa-solid fa-location-dot"></i> Kebumen, Jawa Tengah,</p>
-        <p><i class="fa-brands fa-whatsapp"></i> 0822-2636-2669</p>
-        <p><i class="fa-solid fa-envelope"></i> info@liksisri.com</p>
-
-        <form>
-            <input type="text" placeholder="Nama" required>
-            <input type="email" placeholder="Email" required>
-            <textarea placeholder="Pesan"></textarea>
-            <button type="submit">Kirim</button>
-        </form>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2025 Warung Seblak Lik Sisri</p>
-
-        <div class="social">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
+        <div class="cart-total">
+            <p>Total Item: <span id="totalItems">0</span></p>
+            <p>Total Harga: Rp <span id="totalPrice">0</span></p>
         </div>
-    </footer>
 
-    <div id="notification"></div>
+        <button class="clear-btn" id="clearCart">
+            Kosongkan Keranjang
+        </button>
 
-    <script src="script.js"></script>
+        <h3>Data Pemesan</h3>
+
+<input type="text" id="customerName" placeholder="Nama">
+<input type="text" id="customerPhone" placeholder="WhatsApp">
+
+<div class="form-row">
+    <textarea id="customerAddress" placeholder="Alamat"></textarea>
+    <textarea id="customerNote" placeholder="Catatan"></textarea>
+</div>
+
+<button class="checkout-btn" id="checkoutBtn">
+    Checkout WhatsApp
+</button>
+    </div>
+
+<div id="toast"></div>
+
+<script src="script.js"></script>
 </body>
 </html>
+
+<div class="cart-icon" id="cartBtn">
+    <i class="fa-solid fa-cart-shopping"></i>
+    <span id="cartCount">0</span>
+</div>
