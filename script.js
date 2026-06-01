@@ -555,8 +555,8 @@ function animateToCart(button){
     flying.style.position = "fixed";
     flying.style.left = start.left + "px";
     flying.style.top = start.top + "px";
-    flying.style.width = "100px";
-    flying.style.height = "100px";
+    flying.style.width = "60px";
+    flying.style.height = "60px";
     flying.style.borderRadius = "50%";
     flying.style.zIndex = "99999";
     flying.style.transition = "all 0.8s ease";
